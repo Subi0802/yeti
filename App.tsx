@@ -6,113 +6,131 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {enableScreens} from 'react-native-screens';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Screen1 from './src/Screens/screen1';
+import Screen2 from './src/Screens/screen2';
+import Screen3 from './src/Screens/screen3';
+import Screen4 from './src/Screens/screen4';
+import Screen5 from './src/Screens/screen5';
+import Screen6 from './src/Screens/screen6';
+import Screen7 from './src/Screens/screen7';
+import Screen8 from './src/Screens/screen8';
+import Screen9 from './src/Screens/screen9';
+import Screen10 from './src/Screens/screen10';
+import Screen11 from './src/Screens/screen11';
+import Screen12 from './src/Screens/screen12';
+import Screen13 from './src/Screens/screen13';
+import Screen14 from './src/Screens/screen14';
+import Screen15 from './src/Screens/screen15';
+import Screen16 from './src/Screens/screen16';
+import Screen17 from './src/Screens/screen17';
+import Screen18 from './src/Screens/screen18';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+enableScreens(true);
+const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Screen1"
+            component={Screen1}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen2"
+            component={Screen2}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen3"
+            component={Screen3}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen4"
+            component={Screen4}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen5"
+            component={Screen5}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen6"
+            component={Screen6}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen7"
+            component={Screen7}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen8"
+            component={Screen8}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen9"
+            component={Screen9}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen10"
+            component={Screen10}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen11"
+            component={Screen11}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen12"
+            component={Screen12}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen13"
+            component={Screen13}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen14"
+            component={Screen14}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen15"
+            component={Screen15}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen16"
+            component={Screen16}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen17"
+            component={Screen17}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Screen18"
+            component={Screen18}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/BalsamiqSans-Regular.ttf",
+      "sha1": "050e0d3fa328586e4601390b60cd7780b85da7e0"
+    },
+    {
+      "path": "src/assets/fonts/MochiyPopOne-Regular.ttf",
+      "sha1": "18a1236fa35e3d0b5e3b50142195266f3ea58df8"
+    }
+  ]
+}
