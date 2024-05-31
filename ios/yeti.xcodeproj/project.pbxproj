@@ -16,6 +16,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		493565A70CE0451C986357F2 /* BalsamiqSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 913262AFF5164AEAADBF9BD4 /* BalsamiqSans-Regular.ttf */; };
 		6B230330E9E14AFBAC290F8C /* MochiyPopOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51E57D660A864599842FBC9E /* MochiyPopOne-Regular.ttf */; };
+		849A3E9D83FB422B878B3F0C /* ComicSansMS3.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10E03AF5232943CA86B34DDE /* ComicSansMS3.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		913262AFF5164AEAADBF9BD4 /* BalsamiqSans-Regular.ttf */ = {isa = PBXFileReference; name = "BalsamiqSans-Regular.ttf"; path = "../src/assets/fonts/BalsamiqSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		51E57D660A864599842FBC9E /* MochiyPopOne-Regular.ttf */ = {isa = PBXFileReference; name = "MochiyPopOne-Regular.ttf"; path = "../src/assets/fonts/MochiyPopOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		10E03AF5232943CA86B34DDE /* ComicSansMS3.ttf */ = {isa = PBXFileReference; name = "ComicSansMS3.ttf"; path = "../src/assets/fonts/ComicSansMS3.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				913262AFF5164AEAADBF9BD4 /* BalsamiqSans-Regular.ttf */,
 				51E57D660A864599842FBC9E /* MochiyPopOne-Regular.ttf */,
+				10E03AF5232943CA86B34DDE /* ComicSansMS3.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				493565A70CE0451C986357F2 /* BalsamiqSans-Regular.ttf in Resources */,
 				6B230330E9E14AFBAC290F8C /* MochiyPopOne-Regular.ttf in Resources */,
+				849A3E9D83FB422B878B3F0C /* ComicSansMS3.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

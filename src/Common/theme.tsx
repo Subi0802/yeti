@@ -36,6 +36,9 @@ export const SPACING = {
 };
 
 export const BORDERRADIUS = {
+  radius_0: 0.5 * scaleFactor,
+  radius_1: 1 * scaleFactor,
+  radius_2: 2 * scaleFactor,
   radius_4: 4 * scaleFactor,
   radius_8: 8 * scaleFactor,
   radius_10: 10 * scaleFactor,

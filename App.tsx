@@ -1,15 +1,10 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {enableScreens} from 'react-native-screens';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Splashscreen from './src/Screens/splashscreen';
+import Home from './src/Screens/Home';
 import Screen1 from './src/Screens/screen1';
 import Screen2 from './src/Screens/screen2';
 import Screen3 from './src/Screens/screen3';
@@ -36,7 +31,17 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Splashscreen">
+          <Stack.Screen
+            name="Splashscreen"
+            component={Splashscreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="Screen1"
             component={Screen1}
