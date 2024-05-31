@@ -12,6 +12,17 @@ const images = {
   Pic: require('../Assets/pic.png'),
   Plus: require('../Assets/plus.png'),
   CheckBox: require('../Assets/checkbox.png'),
+  Blue: require('../Assets/blue.jpeg'),
+  Rectangle: require('../Assets/Rectangle.png'),
+  Yellow: require('../Assets/yellow.png'),
+  Pink: require('../Assets/pink.jpeg'),
+  Red: require('../Assets/red.png'),
+  Cloud1: require('../Assets/Cloud1.png'),
+  Cloud2: require('../Assets/Cloud2.png'),
+  Cloud3: require('../Assets/Cloud3.png'),
+  Cloud4: require('../Assets/Cloud4.png'),
+  Hello: require('../Assets/Hello.gif'),
+  Splash_screen: require('../Assets/Splash_screen.png'),
 };
 
 export default images;

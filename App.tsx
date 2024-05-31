@@ -10,24 +10,23 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {enableScreens} from 'react-native-screens';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import Screen1 from './src/Screens/screen1';
-import Screen2 from './src/Screens/screen2';
-import Screen3 from './src/Screens/screen3';
-import Screen4 from './src/Screens/screen4';
-import Screen5 from './src/Screens/screen5';
-import Screen6 from './src/Screens/screen6';
-import Screen7 from './src/Screens/screen7';
-import Screen8 from './src/Screens/screen8';
-import Screen9 from './src/Screens/screen9';
-import Screen10 from './src/Screens/screen10';
-import Screen11 from './src/Screens/screen11';
-import Screen12 from './src/Screens/screen12';
-import Screen13 from './src/Screens/screen13';
-import Screen14 from './src/Screens/screen14';
-import Screen15 from './src/Screens/screen15';
-import Screen16 from './src/Screens/screen16';
-import Screen17 from './src/Screens/screen17';
-import Screen18 from './src/Screens/screen18';
+import DateofBirth from './src/Screens/dateofbirth';
+import Role from './src/Screens/role';
+import VerificationCode from './src/Screens/verificationcode';
+import ChildName from './src/Screens/childname';
+import CreateAccount from './src/Screens/createaccount';
+import Goals from './src/Screens/goals';
+import ChildGrade from './src/Screens/childgrade';
+import ChildBetter from './src/Screens/childbetter';
+import ChildExperience from './src/Screens/childexperience';
+import ScreenTimeLimit from './src/Screens/screentime';
+import LastThing from './src/Screens/lastthing';
+import ProfileSetup from './src/Screens/profilesetup';
+import SigninBack from './src/Screens/signinback';
+import NotVerified from './src/Screens/notverified';
+import Screen from './src/Screens/Swiper/swiper';
+import Splash1 from './src/Screens/Splash/splash1';
+import Splash2 from './src/Screens/Splash/splash2';
 
 enableScreens(true);
 const Stack = createNativeStackNavigator();
@@ -38,93 +37,90 @@ function App(): React.JSX.Element {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Screen1"
-            component={Screen1}
+            name="Splash1"
+            component={Splash1}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen2"
-            component={Screen2}
+            name="Splash2"
+            component={Splash2}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen3"
-            component={Screen3}
+            name="Screen"
+            component={Screen}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen4"
-            component={Screen4}
+            name="Role"
+            component={Role}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen5"
-            component={Screen5}
+            name="DateofBirth"
+            component={DateofBirth}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="CreateAccount"
+            component={CreateAccount}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen6"
-            component={Screen6}
+            name="NotVerified"
+            component={NotVerified}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen7"
-            component={Screen7}
+            name="VerificationCode"
+            component={VerificationCode}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen8"
-            component={Screen8}
+            name="Goals"
+            component={Goals}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen9"
-            component={Screen9}
+            name="ChildName"
+            component={ChildName}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen10"
-            component={Screen10}
+            name="ChildGrade"
+            component={ChildGrade}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen11"
-            component={Screen11}
+            name="ChildBetter"
+            component={ChildBetter}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen12"
-            component={Screen12}
+            name="ChildExperience"
+            component={ChildExperience}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen13"
-            component={Screen13}
+            name="ScreenTimeLimit"
+            component={ScreenTimeLimit}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen14"
-            component={Screen14}
+            name="LastThing"
+            component={LastThing}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="ProfileSetup"
+            component={ProfileSetup}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Screen15"
-            component={Screen15}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Screen16"
-            component={Screen16}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Screen17"
-            component={Screen17}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Screen18"
-            component={Screen18}
+            name="SigninBack"
+            component={SigninBack}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

@@ -5,7 +5,13 @@ const referenceWidth: number = 320;
 const scaleFactor: number = width / referenceWidth;
 
 export const FONTSIZE = {
+  size_1: 1 * scaleFactor,
+  size_2: 2 * scaleFactor,
+  size_3: 3 * scaleFactor,
+  size_4: 4 * scaleFactor,
+  size_5: 5 * scaleFactor,
   size_6: 6 * scaleFactor,
+  size_7: 7 * scaleFactor,
   size_8: 8 * scaleFactor,
   size_10: 10 * scaleFactor,
   size_12: 12 * scaleFactor,
@@ -18,6 +24,7 @@ export const FONTSIZE = {
   size_30: 30 * scaleFactor,
 };
 export const SPACING = {
+  space_1: 1 * scaleFactor,
   space_2: 2 * scaleFactor,
   space_4: 4 * scaleFactor,
   space_6: 6 * scaleFactor,
@@ -33,6 +40,8 @@ export const SPACING = {
   space_30: 30 * scaleFactor,
   space_32: 32 * scaleFactor,
   space_36: 36 * scaleFactor,
+  space_50: 50 * scaleFactor,
+  space_60: 60 * scaleFactor,
 };
 
 export const BORDERRADIUS = {

@@ -11,8 +11,10 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import FontFamily from '../Common/fonts';
 import images from '../Common/allImages';
+import {BORDERRADIUS, FONTSIZE, SPACING} from '../Common/theme';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../Common/dimensions';
 
-const ProgressBar = ({progress}) => {
+const ProgressBar = ({progress, label}) => {
   const [barWidth] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -24,23 +26,26 @@ const ProgressBar = ({progress}) => {
   }, [barWidth, progress]);
 
   return (
-    <View style={styles.barContainer}>
-      <Animated.View
-        style={[
-          styles.bar,
-          {
-            width: barWidth.interpolate({
-              inputRange: [0, 100],
-              outputRange: ['0%', '100%'],
-            }),
-          },
-        ]}
-      />
+    <View style={styles.progressBarWrapper}>
+      <View style={styles.barContainer}>
+        <Animated.View
+          style={[
+            styles.bar,
+            {
+              width: barWidth.interpolate({
+                inputRange: [0, 100],
+                outputRange: ['0%', '100%'],
+              }),
+            },
+          ]}
+        />
+      </View>
+      <Text style={styles.progressBarLabel}>{label}</Text>
     </View>
   );
 };
 
-const Screen5 = () => {
+const VerificationCode = () => {
   const navigation = useNavigation();
   const [verificationCodes, setVerificationCodes] = useState([
     '',
@@ -52,10 +57,10 @@ const Screen5 = () => {
   ]);
 
   const handleContinuePress = () => {
-    navigation.navigate('Screen6');
+    navigation.navigate('Goals');
   };
 
-  const handleChangeText = (text, index) => {
+  const handleChangeText = (text: string, index: number) => {
     const newVerificationCodes = [...verificationCodes];
     newVerificationCodes[index] = text;
     setVerificationCodes(newVerificationCodes);
@@ -63,11 +68,13 @@ const Screen5 = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.progressBarContainer}>
+      <View style={styles.headerContainer}>
         <Image source={images.Back} style={styles.backImage} />
-        <ProgressBar progress={100} />
-        <ProgressBar progress={0} />
-        <ProgressBar progress={0} />
+        <View style={styles.progressBarContainer}>
+          <ProgressBar progress={70} label="Account creation" />
+          <ProgressBar progress={0} label="Profile setup" />
+          <ProgressBar progress={0} label="Your preferences" />
+        </View>
       </View>
       <Text style={styles.text}>Check your email for a verification code</Text>
       <View style={styles.inputRowContainer}>
@@ -75,7 +82,7 @@ const Screen5 = () => {
           <View style={styles.inputContainer} key={index}>
             <TextInput
               style={styles.input}
-              onChangeText={text => handleChangeText(text, index)}
+              onChangeText={(text: any) => handleChangeText(text, index)}
               value={code}
               keyboardType="numeric"
             />
@@ -94,74 +101,86 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: '2%', // Adjust as needed
+    marginTop: SPACING.space_6,
   },
   backImage: {
-    width: '10.25%',
-    height: 30,
+    width: SCREEN_WIDTH / 6,
+    height: SCREEN_HEIGHT / 12,
     resizeMode: 'contain',
-    alignSelf: 'flex-start',
+    marginTop: '-2%',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: SPACING.space_8, // Adjust padding as needed
   },
   progressBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: '5%',
+    flex: 1, // Ensures progress bars take the remaining space
+  },
+  progressBarWrapper: {
+    alignItems: 'center',
+    marginHorizontal: SPACING.space_2,
   },
   barContainer: {
-    width: '22%',
-    height: 25,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 14,
     backgroundColor: '#ddd',
-    borderRadius: 50,
-    marginRight: 30,
+    borderRadius: BORDERRADIUS.radius_25,
     overflow: 'hidden',
-    '@media (max-width: 600px)': {
-      width: '30%',
-    },
   },
   bar: {
     height: '100%',
     backgroundColor: '#8A2BE2',
+    borderRadius: BORDERRADIUS.radius_25,
+  },
+  progressBarLabel: {
+    marginTop: SPACING.space_1,
+    fontSize: FONTSIZE.size_5,
+    fontFamily: FontFamily.BalsamiqSans_Regular,
+    color: '#A5A0AB',
   },
   text: {
-    fontSize: 20,
+    fontSize: FONTSIZE.size_7,
     fontFamily: FontFamily.MochiyPopOne_regular,
     textAlign: 'center',
-    marginTop: '3%',
+    marginTop: SPACING.space_6,
     color: '#5600C6',
   },
   inputRowContainer: {
     flexDirection: 'row',
-    marginBottom: '5%',
+    marginBottom: SPACING.space_6,
   },
   inputContainer: {
-    width: '5%',
-    aspectRatio: 1, // Makes the container square
+    width: SCREEN_WIDTH / 14,
+    height: SCREEN_HEIGHT / 8,
     borderColor: '#D9D9D9',
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: '3%',
-    marginRight: '2%',
-    marginTop: '5%',
+    borderWidth: 3,
+    borderRadius: BORDERRADIUS.radius_4,
+    marginRight: SPACING.space_6,
+    marginTop: SPACING.space_15,
   },
   input: {
     flex: 1,
-    fontSize: 16,
-    textAlign: 'center',
+    fontSize: FONTSIZE.size_7,
   },
   CountinueImage: {
-    aspectRatio: 200 / 40, // Adjust based on the original image dimensions
+    width: SCREEN_WIDTH / 3,
+    height: SCREEN_HEIGHT / 6,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginTop: '2%',
+    marginTop: SPACING.space_8,
   },
   resendCodeText: {
     textDecorationLine: 'underline',
     color: '#A5A0AB',
-    fontSize: 20,
-    marginTop: '2%',
+    fontSize: FONTSIZE.size_7,
+    marginTop: SPACING.space_4,
     fontFamily: FontFamily.BalsamiqSans_Regular,
   },
 });
 
-export default Screen5;
+export default VerificationCode;

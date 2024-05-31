@@ -11,6 +11,8 @@ import React, {useState, useEffect} from 'react';
 import FontFamily from '../Common/fonts';
 import images from '../Common/allImages';
 import {useNavigation} from '@react-navigation/native';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../Common/dimensions';
+import {BORDERRADIUS, FONTSIZE, SPACING} from '../Common/theme';
 
 const ProgressBar = ({progress}) => {
   const [barWidth] = useState(new Animated.Value(0));
@@ -40,22 +42,20 @@ const ProgressBar = ({progress}) => {
   );
 };
 
-const Screen4 = () => {
+const SigninBack = () => {
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
   const navigation = useNavigation();
 
-  const handleContinuePress = () => {
-    navigation.navigate('Screen5');
-  };
-
   return (
     <View style={styles.container}>
-      <View style={styles.progressBarContainer}>
+      <View style={styles.headerContainer}>
         <Image source={images.Back} style={styles.backImage} />
-        <ProgressBar progress={100} />
-        <ProgressBar progress={0} />
-        <ProgressBar progress={0} />
+        <View style={styles.progressBarContainer}>
+          <ProgressBar progress={100} />
+          <ProgressBar progress={0} />
+          <ProgressBar progress={0} />
+        </View>
       </View>
       <Text style={styles.text}>Sign back in!</Text>
       {/* Text Input Boxes */}
@@ -72,7 +72,7 @@ const Screen4 = () => {
         placeholder="Email"
       />
 
-      <TouchableOpacity onPress={handleContinuePress}>
+      <TouchableOpacity>
         <Image source={images.Countinue} style={styles.CountinueImage} />
       </TouchableOpacity>
       <Text style={styles.signupText}>or sign up using</Text>
@@ -96,86 +96,88 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: '2%', // Adjust this value as needed
+    marginTop: SPACING.space_6,
   },
   backImage: {
-    width: '10.25%',
-    height: 30,
+    width: SCREEN_WIDTH / 8,
+    height: SCREEN_HEIGHT / 10,
     resizeMode: 'contain',
-    alignSelf: 'flex-start',
+  },
+
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '90%',
   },
   progressBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: '5%',
   },
   barContainer: {
-    width: '22%',
-    height: 25,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 20,
     backgroundColor: '#ddd',
-    borderRadius: 50,
-    marginRight: 30,
+    borderRadius: BORDERRADIUS.radius_25,
     overflow: 'hidden',
-    '@media (max-width: 600px)': {
-      width: '30%',
-    },
+    marginHorizontal: '1%',
   },
   bar: {
     height: '100%',
     backgroundColor: '#8A2BE2',
   },
   text: {
-    fontSize: 20,
+    fontSize: FONTSIZE.size_7,
     fontFamily: FontFamily.MochiyPopOne_regular,
     textAlign: 'center',
-    marginTop: '2%',
-    color: '#9747FF',
+    color: '#5600C6',
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
+    height: SCREEN_HEIGHT / 10,
+    borderColor: '#D9D9D9',
     borderWidth: 1,
-    borderRadius: 50,
+    borderRadius: BORDERRADIUS.radius_10,
     paddingHorizontal: '5%',
     marginTop: '2%',
-    width: '30%',
+    width: SCREEN_WIDTH / 3,
     fontFamily: FontFamily.BalsamiqSans_Regular,
+    fontSize: FONTSIZE.size_4,
   },
 
   signupText: {
-    fontSize: 12,
+    fontSize: FONTSIZE.size_4,
     fontFamily: FontFamily.BalsamiqSans_Regular,
     color: '#A5A0AB',
   },
   CountinueImage: {
-    aspectRatio: 200 / 40, // Adjust based on the original image dimensions
+    width: SCREEN_WIDTH / 3,
+    height: SCREEN_HEIGHT / 6,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginTop: '2%',
+    marginTop: '1%',
   },
   pathContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: '2%',
-    width: '20%',
+    marginTop: '1%',
+    borderwidth: 2,
   },
   pathButton: {
-    paddingVertical: '3%',
-    paddingHorizontal: '3%',
     borderColor: '#D9D9D9',
-    borderRadius: 10,
-    marginHorizontal: '2%',
+    borderRadius: BORDERRADIUS.radius_4,
+    marginHorizontal: '1%',
+    width: SCREEN_WIDTH / 22,
+    height: SCREEN_HEIGHT / 10,
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 2,
     justifyContent: 'center',
   },
-  pathImage: {
-    width: 20,
-    height: 20,
+  pathimage: {
+    width: SCREEN_WIDTH / 10,
+    height: SCREEN_HEIGHT / 20,
     resizeMode: 'contain',
   },
 });
 
-export default Screen4;
+export default SigninBack;

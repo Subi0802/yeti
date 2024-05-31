@@ -10,8 +10,10 @@ import {
 import FontFamily from '../Common/fonts';
 import images from '../Common/allImages';
 import {useNavigation} from '@react-navigation/native';
+import {BORDERRADIUS, FONTSIZE, SPACING} from '../Common/theme';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../Common/dimensions';
 
-const ProgressBar = ({progress}) => {
+const ProgressBar = ({progress, label}) => {
   const [barWidth] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -23,27 +25,30 @@ const ProgressBar = ({progress}) => {
   }, [barWidth, progress]);
 
   return (
-    <View style={styles.barContainer}>
-      <Animated.View
-        style={[
-          styles.bar,
-          {
-            width: barWidth.interpolate({
-              inputRange: [0, 100],
-              outputRange: ['0%', '100%'],
-            }),
-          },
-        ]}
-      />
+    <View style={styles.progressBarWrapper}>
+      <View style={styles.barContainer}>
+        <Animated.View
+          style={[
+            styles.bar,
+            {
+              width: barWidth.interpolate({
+                inputRange: [0, 100],
+                outputRange: ['0%', '100%'],
+              }),
+            },
+          ]}
+        />
+      </View>
+      <Text style={styles.progressBarLabel}>{label}</Text>
     </View>
   );
 };
 
-const Screen6 = () => {
+const Goals = () => {
   const navigation = useNavigation();
 
   const handleContinuePress = () => {
-    navigation.navigate('Screen7');
+    navigation.navigate('ChildName');
   };
 
   const [checkedItems, setCheckedItems] = useState({
@@ -53,7 +58,6 @@ const Screen6 = () => {
     item4: false,
     item5: false,
     item6: false,
-    item7: false,
   });
 
   const toggleCheckbox = item => {
@@ -62,15 +66,17 @@ const Screen6 = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.progressBarContainer}>
+      <View style={styles.headerContainer}>
         <Image source={images.Back} style={styles.backImage} />
-        <ProgressBar progress={100} />
-        <ProgressBar progress={30} />
-        <ProgressBar progress={0} />
+        <View style={styles.progressBarContainer}>
+          <ProgressBar progress={90} label="Account creation" />
+          <ProgressBar progress={0} label="Profile setup" />
+          <ProgressBar progress={0} label="Your preferences" />
+        </View>
       </View>
-      <Text style={styles.text}>Okay, now lets set goals!</Text>
+      <Text style={styles.text}>Let’s hear about your goals</Text>
       <Text style={styles.text1}>I would like my child to...</Text>
-      <Text style={styles.text2}>Select all that apply</Text>
+
       <View style={styles.roleButtonRow}>
         <TouchableOpacity
           style={styles.roleButton1}
@@ -82,7 +88,7 @@ const Screen6 = () => {
               </View>
             </View>
             <Text style={styles.roleButtonText}>
-              Develop better social and emotional health
+              Improve their overall wellbeing
             </Text>
           </View>
         </TouchableOpacity>
@@ -95,7 +101,7 @@ const Screen6 = () => {
                 {checkedItems.item2 && <Text style={styles.checkmark}>✓</Text>}
               </View>
             </View>
-            <Text style={styles.roleButtonText}>Develop their curiosity</Text>
+            <Text style={styles.roleButtonText}>Get more creative</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -109,7 +115,7 @@ const Screen6 = () => {
                 {checkedItems.item3 && <Text style={styles.checkmark}>✓</Text>}
               </View>
             </View>
-            <Text style={styles.roleButtonText}>Get more creative</Text>
+            <Text style={styles.roleButtonText}>Develop their curiosity</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -125,9 +131,7 @@ const Screen6 = () => {
                 {checkedItems.item4 && <Text style={styles.checkmark}>✓</Text>}
               </View>
             </View>
-            <Text style={styles.roleButtonText}>
-              Know more about the world around them
-            </Text>
+            <Text style={styles.roleButtonText}>Know more about the world</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -141,7 +145,9 @@ const Screen6 = () => {
                 {checkedItems.item5 && <Text style={styles.checkmark}>✓</Text>}
               </View>
             </View>
-            <Text style={styles.roleButtonText}>Be more mindful</Text>
+            <Text style={styles.roleButtonText}>
+              Develop healthy lifestyle habits
+            </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -151,18 +157,6 @@ const Screen6 = () => {
             <View style={styles.checkboxContainer}>
               <View style={styles.checkbox}>
                 {checkedItems.item6 && <Text style={styles.checkmark}>✓</Text>}
-              </View>
-            </View>
-            <Text style={styles.roleButtonText}>Develop healthy habits</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.roleButton7}
-          onPress={() => toggleCheckbox('item7')}>
-          <View style={styles.buttonContent}>
-            <View style={styles.checkboxContainer}>
-              <View style={styles.checkbox}>
-                {checkedItems.item7 && <Text style={styles.checkmark}>✓</Text>}
               </View>
             </View>
             <Text style={styles.roleButtonText}>All of the above</Text>
@@ -179,151 +173,160 @@ const Screen6 = () => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
-    paddingTop: '2%',
+    paddingTop: SPACING.space_4,
+    alignItems: 'center',
   },
   backImage: {
-    width: '10.25%',
-    height: 30,
+    width: SCREEN_WIDTH / 6,
+    height: SCREEN_HEIGHT / 12,
     resizeMode: 'contain',
-    alignSelf: 'flex-start',
+    marginTop: '-2%',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: SPACING.space_8, // Adjust padding as needed
   },
   progressBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: '5%',
+    flex: 1, // Ensures progress bars take the remaining space
+  },
+  progressBarWrapper: {
+    alignItems: 'center',
+    marginHorizontal: SPACING.space_2,
   },
   barContainer: {
-    width: '22%',
-    height: 25,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 14,
     backgroundColor: '#ddd',
-    borderRadius: 50,
-    marginRight: 30,
+    borderRadius: BORDERRADIUS.radius_25,
     overflow: 'hidden',
   },
   bar: {
     height: '100%',
     backgroundColor: '#8A2BE2',
+    borderRadius: BORDERRADIUS.radius_25,
+  },
+  progressBarLabel: {
+    marginTop: SPACING.space_1,
+    fontSize: FONTSIZE.size_5,
+    fontFamily: FontFamily.BalsamiqSans_Regular,
+    color: '#A5A0AB',
   },
   text: {
-    fontSize: 20,
+    fontSize: FONTSIZE.size_7,
     fontFamily: FontFamily.MochiyPopOne_regular,
     color: '#5600C6',
-    marginLeft: '10%',
-    marginTop: '3%',
+    marginLeft: SPACING.space_30,
+    marginTop: SPACING.space_6,
   },
   text1: {
-    fontSize: 20,
+    fontSize: FONTSIZE.size_7,
     fontFamily: FontFamily.BalsamiqSans_Regular,
     color: '#222222',
-    marginLeft: '10%',
-    marginTop: '.5%',
+    marginLeft: SPACING.space_30,
+    marginTop: SPACING.space_4,
   },
-  text2: {
-    fontSize: 12,
-    fontFamily: FontFamily.BalsamiqSans_Regular,
-    marginLeft: '10%',
-    marginTop: '.5%',
-  },
+
   roleButtonRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: '2%',
-    marginLeft: '10%',
-    marginRight: '8%',
+    justifyContent: 'space-around',
+    gap: 20,
+    marginLeft: SPACING.space_30,
+    marginTop: SPACING.space_6,
+    marginRight: SPACING.space_8,
   },
   roleButton1: {
-    borderRadius: 10,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    height: SCREEN_HEIGHT / 14,
+    width: '32%',
     borderWidth: 2,
     borderColor: '#D9D9D9',
-    marginLeft: '3%', // Adjust as needed based on the screen size
+    marginLeft: SPACING.space_8,
   },
   roleButton2: {
-    borderRadius: 10,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    height: SCREEN_HEIGHT / 14,
+    width: SCREEN_WIDTH / 5,
     borderWidth: 2,
     borderColor: '#D9D9D9',
-    // marginLeft: '30%', // Adjust as needed based on the screen size
+    marginRight: SPACING.space_20,
   },
 
   roleButton3: {
-    borderRadius: 10,
-    width: 200,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    width: '25%',
+    height: SCREEN_HEIGHT / 14,
     borderWidth: 2,
     borderColor: '#D9D9D9',
-    marginLeft: 30,
+    marginLeft: SPACING.space_8,
   },
   roleButton4: {
-    borderRadius: 30,
-    width: 350,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    height: SCREEN_HEIGHT / 14,
+    width: '30%',
     borderWidth: 2,
-    //marginLeft: 10,
     borderColor: '#14AE5C',
+    marginRight: SPACING.space_20,
   },
   roleButton5: {
-    borderRadius: 10,
-    width: 200,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    width: '32%',
+    height: SCREEN_HEIGHT / 14,
     borderWidth: 2,
     borderColor: '#D9D9D9',
-    marginLeft: 30,
   },
   roleButton6: {
-    borderRadius: 10,
-    width: 250,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    width: '20%',
+    height: SCREEN_HEIGHT / 14,
     borderWidth: 2,
     borderColor: '#D9D9D9',
-    marginLeft: 30,
+    marginRight: SPACING.space_18,
   },
-  roleButton7: {
-    borderRadius: 10,
-    width: 200,
-    height: 30,
-    borderWidth: 2,
-    borderColor: '#D9D9D9',
-    marginLeft: 30,
-  },
+
   roleButtonText: {
-    fontSize: 16,
+    fontSize: FONTSIZE.size_5,
     color: '#000000',
+    marginLeft: SPACING.space_1,
     textAlign: 'center',
     fontFamily: FontFamily.BalsamiqSans_Regular,
+    marginTop: SPACING.space_1,
   },
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   checkboxContainer: {
-    width: 30,
+    width: SCREEN_WIDTH / 22,
     alignItems: 'center',
-    marginLeft: 10,
+    marginLeft: SPACING.space_2,
   },
   checkbox: {
-    width: 15,
-    height: 15,
+    width: SCREEN_WIDTH / 60,
+    height: SCREEN_WIDTH / 60,
     borderWidth: 1,
     borderColor: '#D9D9D9',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: SPACING.space_1,
   },
   checkboxChecked: {
     backgroundColor: '#14AE5C',
     borderColor: '#14AE5C',
   },
   checkmark: {
-    fontSize: 12,
+    fontSize: FONTSIZE.size_3,
     color: '#FFFFFF',
   },
   CountinueImage: {
-    aspectRatio: 200 / 40, // Adjust based on the original image dimensions
+    width: SCREEN_WIDTH / 3,
+    height: SCREEN_HEIGHT / 6,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginTop: '5%',
+    marginTop: SPACING.space_6,
   },
 });
 
-export default Screen6;
+export default Goals;

@@ -10,8 +10,10 @@ import React, {useState, useEffect} from 'react';
 import FontFamily from '../Common/fonts';
 import images from '../Common/allImages';
 import {useNavigation} from '@react-navigation/native';
+import {BORDERRADIUS, FONTSIZE, SPACING} from '../Common/theme';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../Common/dimensions';
 
-const ProgressBar = ({progress}) => {
+const ProgressBar = ({progress, label}) => {
   const [barWidth] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -23,35 +25,40 @@ const ProgressBar = ({progress}) => {
   }, [barWidth, progress]);
 
   return (
-    <View style={styles.barContainer}>
-      <Animated.View
-        style={[
-          styles.bar,
-          {
-            width: barWidth.interpolate({
-              inputRange: [0, 100],
-              outputRange: ['0%', '100%'],
-            }),
-          },
-        ]}
-      />
+    <View style={styles.progressBarWrapper}>
+      <View style={styles.barContainer}>
+        <Animated.View
+          style={[
+            styles.bar,
+            {
+              width: barWidth.interpolate({
+                inputRange: [0, 100],
+                outputRange: ['0%', '100%'],
+              }),
+            },
+          ]}
+        />
+      </View>
+      <Text style={styles.progressBarLabel}>{label}</Text>
     </View>
   );
 };
 
-const Screen9 = () => {
+const ChildBetter = () => {
   const navigation = useNavigation();
 
   const handleContinuePress = () => {
-    navigation.navigate('Screen10');
+    navigation.navigate('ChildExperience');
   };
   return (
     <View style={styles.container}>
-      <View style={styles.progressBarContainer}>
+      <View style={styles.headerContainer}>
         <Image source={images.Back} style={styles.backImage} />
-        <ProgressBar progress={100} />
-        <ProgressBar progress={100} />
-        <ProgressBar progress={0} />
+        <View style={styles.progressBarContainer}>
+          <ProgressBar progress={100} label="Account creation" />
+          <ProgressBar progress={20} label="Profile setup" />
+          <ProgressBar progress={0} label="Your preferences" />
+        </View>
       </View>
       <Text style={styles.text}>Let’s get to know your child better</Text>
 
@@ -68,12 +75,12 @@ const Screen9 = () => {
             <Text style={styles.roleButtonText}>words</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.roleButton, {width: 130}]}
+            style={[styles.roleButton, {width: SCREEN_WIDTH / 8}]}
             onPress={() => console.log('button 2 pressed')}>
             <Text style={styles.roleButtonText}>sentences</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.roleButton, {width: 130}]}
+            style={[styles.roleButton, {width: SCREEN_WIDTH / 8}]}
             onPress={() => console.log('button 3 pressed')}>
             <Text style={styles.roleButtonText}>paragraphs </Text>
           </TouchableOpacity>
@@ -92,12 +99,15 @@ const Screen9 = () => {
             <Text style={styles.roleButtonText}>words</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.roleButton, {width: 130, borderColor: '#14AE5C'}]}
+            style={[
+              styles.roleButton,
+              {width: SCREEN_WIDTH / 8, borderColor: '#14AE5C'},
+            ]}
             onPress={() => console.log('button 2 pressed')}>
             <Text style={styles.roleButtonText}>sentences</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.roleButton, {width: 130}]}
+            style={[styles.roleButton, {width: SCREEN_WIDTH / 8}]}
             onPress={() => console.log('button 3 pressed')}>
             <Text style={styles.roleButtonText}>paragraphs</Text>
           </TouchableOpacity>
@@ -113,86 +123,103 @@ const Screen9 = () => {
 
 const styles = StyleSheet.create({
   container: {
-    //alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 10,
+    paddingTop: SPACING.space_6,
+    alignItems: 'center',
   },
   backImage: {
-    width: 53,
-    height: 48,
+    width: SCREEN_WIDTH / 6,
+    height: SCREEN_HEIGHT / 12,
     resizeMode: 'contain',
-    alignSelf: 'flex-start', // Align the image to the left side
-    marginLeft: 10, // Adjust margin to create space between the image and the left edge,
+    marginTop: '-2%',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: SPACING.space_8, // Adjust padding as needed
   },
   progressBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
+    flex: 1, // Ensures progress bars take the remaining space
+  },
+  progressBarWrapper: {
+    alignItems: 'center',
+    marginHorizontal: SPACING.space_2,
   },
   barContainer: {
-    width: 190,
-    height: 25,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 14,
     backgroundColor: '#ddd',
-    borderRadius: 50,
+    borderRadius: BORDERRADIUS.radius_25,
     overflow: 'hidden',
-    marginHorizontal: 10,
   },
   bar: {
     height: '100%',
     backgroundColor: '#8A2BE2',
+    borderRadius: BORDERRADIUS.radius_25,
+  },
+  progressBarLabel: {
+    marginTop: SPACING.space_1,
+    fontSize: FONTSIZE.size_5,
+    fontFamily: FontFamily.BalsamiqSans_Regular,
+    color: '#A5A0AB',
   },
   contentContainer: {
-    marginLeft: 40, // Adjust left margin for content container
+    marginLeft: SPACING.space_20, // Adjust left margin for content container
   },
   content: {
     flexDirection: 'row', // Align image and text horizontally
   },
   text: {
-    fontSize: 20,
+    fontSize: FONTSIZE.size_7,
     fontFamily: FontFamily.MochiyPopOne_regular,
     color: '#5600C6',
-    marginLeft: 80,
+    marginLeft: SPACING.space_30,
+    marginTop: SPACING.space_4,
   },
   text1: {
-    fontSize: 20,
+    fontSize: FONTSIZE.size_7,
     fontFamily: FontFamily.BalsamiqSans_Regular,
     color: '#222222',
-    marginLeft: 10,
-    marginTop: 30,
+    marginLeft: SPACING.space_6,
+    marginTop: SPACING.space_6,
   },
   image: {
-    width: 63,
-    height: 48,
+    width: SCREEN_WIDTH / 20,
+    height: SCREEN_HEIGHT / 8,
     resizeMode: 'contain',
-    marginLeft: 30,
-    marginTop: 20,
+    marginLeft: SPACING.space_6,
+    marginTop: SPACING.space_6,
   },
   roleButtonRow: {
     flexDirection: 'row',
-    marginLeft: 110, // Adjust left margin
+    marginLeft: SPACING.space_30, // Adjust left margin
+    marginTop: '-3%',
   },
   roleButton: {
-    borderRadius: 10,
-    width: 90,
-    height: 30,
+    borderRadius: BORDERRADIUS.radius_4,
+    width: SCREEN_WIDTH / 10,
+    height: SCREEN_HEIGHT / 14,
     borderWidth: 2,
     borderColor: '#D9D9D9',
-    marginRight: 5,
+    marginRight: SPACING.space_6,
   },
   roleButtonText: {
-    fontSize: 16,
+    fontSize: FONTSIZE.size_6,
     color: '#000000',
     textAlign: 'center',
     fontFamily: FontFamily.BalsamiqSans_Regular,
   },
   CountinueImage: {
-    width: 300,
-    height: 50,
+    width: SCREEN_WIDTH / 3,
+    height: SCREEN_HEIGHT / 6,
     resizeMode: 'contain',
-    alignSelf: 'center',
-    marginTop: 20,
+    marginLeft: SPACING.space_30,
+    marginTop: SPACING.space_10,
   },
 });
 
-export default Screen9;
+export default ChildBetter;
