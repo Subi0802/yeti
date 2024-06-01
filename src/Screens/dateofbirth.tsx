@@ -62,17 +62,20 @@ const ProgressBar = ({progress, label}) => {
 const DateofBirth = () => {
   const navigation = useNavigation();
   const [year, setYear] = useState({0: '', 1: '', 2: '', 3: ''});
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleContinuePress = () => {
     const birthYear = parseInt(Object.values(year).join(''), 10);
     if (birthYear < 2000) {
       navigation.navigate('CreateAccount');
     } else {
-      navigation.navigate('NotVerified');
+      setErrorMessage(
+        'Uh oh! Looks like you may need to have an adult sign up for you!',
+      );
     }
   };
 
-  const handleInputChange = (index: number, value: any) => {
+  const handleInputChange = (index, value) => {
     setYear(prev => ({...prev, [index]: value}));
   };
 
@@ -95,21 +98,24 @@ const DateofBirth = () => {
       <View style={styles.boxContainer}>
         <NumberInput
           value={year[0]}
-          onChange={(value: any) => handleInputChange(0, value)}
+          onChange={value => handleInputChange(0, value)}
         />
         <NumberInput
           value={year[1]}
-          onChange={(value: any) => handleInputChange(1, value)}
+          onChange={value => handleInputChange(1, value)}
         />
         <NumberInput
           value={year[2]}
-          onChange={(value: any) => handleInputChange(2, value)}
+          onChange={value => handleInputChange(2, value)}
         />
         <NumberInput
           value={year[3]}
-          onChange={(value: any) => handleInputChange(3, value)}
+          onChange={value => handleInputChange(3, value)}
         />
       </View>
+      {errorMessage ? (
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+      ) : null}
       <TouchableOpacity onPress={handleContinuePress}>
         <Image source={images.Countinue} style={styles.ContinueImage} />
       </TouchableOpacity>
@@ -181,11 +187,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     width: '20%',
+    height: '15%',
     // marginTop: '10%',
   },
   inputContainer: {
     width: '35%',
-    height: '40%',
+    height: '100%',
     borderWidth: 3,
     borderColor: '#D9D9D9',
     borderRadius: BORDERRADIUS.radius_4,
@@ -197,13 +204,22 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     textAlign: 'center',
+    fontSize: FONTSIZE.size_6,
   },
   ContinueImage: {
     width: SCREEN_WIDTH / 3,
     height: SCREEN_HEIGHT / 6,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginTop: '-2%',
+    marginTop: '5%',
+  },
+  errorMessage: {
+    color: '#F05760',
+    marginTop: SPACING.space_10,
+    fontSize: FONTSIZE.size_6,
+    fontFamily: FontFamily.BalsamiqSans_Regular,
+    textAlign: 'center',
+    width: '35%',
   },
 });
 

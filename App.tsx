@@ -23,7 +23,6 @@ import ScreenTimeLimit from './src/Screens/screentime';
 import LastThing from './src/Screens/lastthing';
 import ProfileSetup from './src/Screens/profilesetup';
 import SigninBack from './src/Screens/signinback';
-import NotVerified from './src/Screens/notverified';
 import Screen from './src/Screens/Swiper/swiper';
 import Splash1 from './src/Screens/Splash/splash1';
 import Splash2 from './src/Screens/Splash/splash2';
@@ -67,11 +66,7 @@ function App(): React.JSX.Element {
             component={CreateAccount}
             options={{headerShown: false}}
           />
-          <Stack.Screen
-            name="NotVerified"
-            component={NotVerified}
-            options={{headerShown: false}}
-          />
+
           <Stack.Screen
             name="VerificationCode"
             component={VerificationCode}
